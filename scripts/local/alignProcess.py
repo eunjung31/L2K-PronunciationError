@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("transcription.csv",index=False)
+df = pd.read_csv("result/transcription.csv",index_col=False)
 
 fnList = df["fileName"].tolist()
 refList = df["reference"].tolist()

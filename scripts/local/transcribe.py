@@ -16,11 +16,11 @@ model.to("cuda")
 
 results = []
 dataFolder = argv[1]
-
 for r, d, files in os.walk(dataFolder):
     for fn in tqdm(files):
-        if fn.endswith(".wav"):
+        if fn.endswith(".textgrid"):
           result = {}
+          fn = fn.split(".")[0] + ".wav"
           result["fileName"] = fn
           fpath = os.path.join(r, fn)
           speech_array, sampling_rate = librosa.load(fpath, sr=16000)
@@ -37,9 +37,9 @@ for r, d, files in os.walk(dataFolder):
 
           result["transcription"] = trans
           result["reference"] = ref
-          print(result)
+         # print(result)
           results.append(result)
 
 print(len(results))
 df = pd.DataFrame(results)
-df.to_csv("transcription.csv")
+df.to_csv("result/transcription.csv")

@@ -9,7 +9,7 @@ def createDict():
     for i , line in enumerate(tqdm(f.readlines())):
         line = line.strip()
         split_ = line.split(" ")
-        splits = [v for v in splits_ if v]
+        splits = [v for v in split_ if v]
         fn = splits[0]
         index = splits[1]
         if index == 'ref':
@@ -21,7 +21,7 @@ def createDict():
 
         if (i ==0) or (i % 4 == 0):
             dataList.append(data)
-        return dataList
+    return dataList
 
 def results(dataDict):
     dataList = []
@@ -38,4 +38,4 @@ dataDict = createDict()
 results = results(dataDict)
 
 df = pd.DataFrame.from_dict(results)
-df.to_csv("dataforCM.csv",index=False)
+df.to_csv("result/dataforCM.csv",index=False)
