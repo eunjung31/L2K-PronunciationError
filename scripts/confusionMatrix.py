@@ -26,8 +26,7 @@ def genCM(CV): #cons,vowels
             linewidth=.2, cbar=False,
             xticklabels=CV,
             yticklabels=CV,
-            annot_kws={"size":5},
-            )
+            annot_kws={"size":5})
     ax.set(xlabel='hyp', ylabel='ref')
     fig.savefig({}.format(CV) + ".pdf", bbox_inches='tight')
     return cm
