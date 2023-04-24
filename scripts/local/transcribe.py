@@ -30,7 +30,7 @@ for r, d, files in os.walk(dataFolder):
             predicted_ids = torch.argmax(logits, dim=-1)
             transcription = processor.batch_decode(predicted_ids)
             trans = transcription[0]
-          tpath = fpath.split(".")[0] + ".txt"
+          tpath = fpath.split(".")[0] + ".textgrid"
           f = open(tpath, "r")
           for line in f.readlines():
             ref = line.strip()
