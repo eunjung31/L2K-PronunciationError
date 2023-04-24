@@ -1,4 +1,5 @@
 import argv
+import numpy as np
 import pandas as pd
 from seaborn import heatmap
 from sklearn.metrics import confusion_matrix
@@ -18,7 +19,7 @@ def toCM(sentList):
         phoneList += nSplits
     return phoneList
 
-def genCM(CV): #cons,vowels
+def genCM(CV,ref,hyp): #cons,vowels
     cm = confusion_matrix(ref, hyp,labels=CV)
     cm = cm.astype('float') / cm.sum(axis=1)[:,np.newaxis]
     fig,ax = plt.subplots(figsize=(10,10))
@@ -60,15 +61,15 @@ if __name__ == '__main__':
     vowels = ['A','iA','oA','E','iE','oE','I', 'uI','O', 'iO','U','iU','EO', 'iEO', 'uEO','EU','euI','***' ]
 
     csvFile = sys.argv[1]
-    df = pd.read_csv(csvFile,index_col=False)
 
+    df = pd.read_csv(csvFile,index_col=False)
     refs = df["reference"].to_list()
     hyps = df["transcription"].to_list()
+
     ref = toCM(refs)
     hyp = toCM(hyps)
-
-    cCM = genCM(cons)
-    vCM = genCM(vowels)
+    cCM = genCM(cons,ref,hyp)
+    vCM = genCM(vowels,ref,hyp)
 
     phoneAnalysis(cCM,cons)
-    phoneAnalysis(vCm,vowles)
+    phoneAnalysis(vCM,vowels)
