@@ -38,3 +38,4 @@ dataDict = createDict()
 results = results(dataDict)
 
 df = pd.DataFrame.from_dict(results)
+df.to_csv("dataforCM.csv",index=False)

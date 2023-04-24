@@ -53,19 +53,24 @@ def phoneAnalysis(cm,CV):
         errorLists.append(errorList)
     print("***Phonesfor Analysis***")
     print(phoneList)
+    f = open("phones.txt", "w")
+    for phone in phoneList:
+        f.write(phone)
+    f.close()
     print("\n***Error Patterns for Analysis***")
     print(errorLists)
-
+    g = open("errorPatterns.txt", "w")
+    for error in errorLists:
+        g.write(error)
+    g.close()
 
 if __name__ == '__main__':
     cons = ['B','BB', 'Ph','D','DD','Th','G', 'GG','Kh','S','SS','H','J','JJ', 'CHh','M','N','L','R','NG','p', 'k', 't', '***']
     vowels = ['A','iA','oA','E','iE','oE','I', 'uI','O', 'iO','U','iU','EO', 'iEO', 'uEO','EU','euI','***' ]
 
-    csvFile = sys.argv[1]
-
-    df = pd.read_csv(csvFile,index_col=False)
-    refs = df["reference"].to_list()
-    hyps = df["transcription"].to_list()
+    df = pd.read_csv("dataforCM.csv",index_col=False)
+    refs = df["new_reference"].to_list()
+    hyps = df["new_transcription"].to_list()
 
     ref = toCM(refs)
     hyp = toCM(hyps)
