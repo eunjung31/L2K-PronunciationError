@@ -33,8 +33,7 @@ for r, d, files in os.walk(dataFolder):
           tpath = fpath.split(".")[0] + ".txt"
           f = open(tpath, "r")
           for line in f.readlines():
-            line = line.strip()
-            ref = line
+            ref = line.strip()
 
           result["transcription"] = trans
           result["reference"] = ref
