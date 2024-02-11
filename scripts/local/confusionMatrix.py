@@ -50,7 +50,7 @@ def genCM(CV, CV_ipa, ref, hyp, country, fn):  # cons,vowels
 def phoneAnalysis(cm, CV, country, fn):
     diag = cm.diagonal()
     avg = np.average(diag)
-    filter1 = diag > avg
+    filter1 = diag < avg
     newarr = diag[filter1]
     index = np.argwhere(filter1 == True).tolist()
     phoneList = []
